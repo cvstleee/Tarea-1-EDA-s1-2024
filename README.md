@@ -2,6 +2,13 @@
 
 HACER INFORME DESPUÉS DE REALIZADO EL CÓDIGO
 
+Para código:
+
+1. función/es que abra los .in y almacene su información
+2. caso base del container de 1
+
+
+
 Apuntes del documento lin:
 
 - Describir en pseudoc´odigo un algoritmo para el problema propuesto utilizando

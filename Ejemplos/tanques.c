@@ -4,7 +4,11 @@
 void busquedaExahustiva(int *cargas, int *tanques, int capacidad, int index, int n, int used_tanks, int *min_tanks) {
     // Si hemos distribuido todas las cargas, actualizamos el mínimo de tanques si es menor que el actual
     if (index == n) {
-        *min_tanks = (*min_tanks < used_tanks) ? *min_tanks : used_tanks;
+        if (*min_tanks < used_tanks) {
+            *min_tanks = *min_tanks;
+        } else {
+            *min_tanks = used_tanks;
+        }
         return;
     }
 

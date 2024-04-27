@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void busquedaExahustiva(int *cargas, int *tanques, int capacidad, int index, int n, int used_tanks, int *min_tanks) {
     // Si hemos distribuido todas las cargas, actualizamos el mínimo de tanques si es menor que el actual
@@ -34,6 +35,7 @@ void busquedaExahustiva(int *cargas, int *tanques, int capacidad, int index, int
 
 
 int main(int argc, char *argv[]) {
+
     if (argc != 2) {
         printf("Uso: %s archivo.txt\n", argv[0]);
         return 1;
@@ -97,6 +99,12 @@ int main(int argc, char *argv[]) {
     int *tanques = (int *)malloc(m * sizeof(int));
     int min_tanks = m; // Inicializamos con la máxima cantidad de tanques posible
 
+    //calculo de tiempo
+    float tiempo_algoritmo = 0;
+	clock_t clock_ini, clock_fin;
+
+    clock_ini = clock();
+
     // Llamada a la función de busquedaExahustiva
     busquedaExahustiva(cargas, tanques, capacidad, 0, m, 0, &min_tanks);
 
@@ -104,6 +112,13 @@ int main(int argc, char *argv[]) {
 
     // Imprimir resultado
     printf("Cantidad minima de tanques necesarios: %d\n", min_tanks);
+	
+	clock_fin = clock();
+	tiempo_algoritmo = (float)((clock_fin - clock_ini) / CLOCKS_PER_SEC);
+	
+	printf("\nTiempo del algoritmo en segundos: %.2f  \n", tiempo_algoritmo); 
+
+
 
 
     // Liberar memoria

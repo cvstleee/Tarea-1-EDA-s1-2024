@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-void busquedaExahustiva(int *cargas, int *tanques, int capacidad, int index, int n, int used_tanks, int *min_tanks) {
+void busquedaExhaustiva(int *cargas, int *tanques, int capacidad, int index, int n, int used_tanks, int *min_tanks) {
     // Si hemos distribuido todas las cargas, actualizamos el mínimo de tanques si es menor que el actual
     if (index == n) {
         if (*min_tanks < used_tanks) {
@@ -20,7 +20,7 @@ void busquedaExahustiva(int *cargas, int *tanques, int capacidad, int index, int
             // Distribuimos la carga en el tanque
             tanques[i] += cargas[index];
             // Llamamos recursivamente para la siguiente carga
-            busquedaExahustiva(cargas, tanques, capacidad, index + 1, n, used_tanks, min_tanks);
+            busquedaExhaustiva(cargas, tanques, capacidad, index + 1, n, used_tanks, min_tanks);
             // Retiramos la carga del tanque para explorar otras posibilidades
             tanques[i] -= cargas[index];
         }
@@ -29,7 +29,7 @@ void busquedaExahustiva(int *cargas, int *tanques, int capacidad, int index, int
     // Si hay espacio para un nuevo tanque, creamos uno nuevo y continuamos la búsqueda
     if (used_tanks < *min_tanks) {
         tanques[used_tanks] = cargas[index];
-        busquedaExahustiva(cargas, tanques, capacidad, index + 1, n, used_tanks + 1, min_tanks);
+        busquedaExhaustiva(cargas, tanques, capacidad, index + 1, n, used_tanks + 1, min_tanks);
     }
 }
 
@@ -106,8 +106,7 @@ int main(int argc, char *argv[]) {
     clock_ini = clock();
 
     // Llamada a la función de busquedaExahustiva
-    busquedaExahustiva(cargas, tanques, capacidad, 0, m, 0, &min_tanks);
-
+    busquedaExhaustiva(cargas, tanques, capacidad, 0, m, 0, &min_tanks);
     
 
     // Imprimir resultado
